@@ -34,7 +34,7 @@ appModule.controller('OrderController', ['$scope', 'OrderInvoiceService',
                 }
             );*/
 
-            pdf.addHTML(source, {pagesplit: true}, function(dispose){
+            pdf.addHTML(source, 20, 20, {pagesplit: true}, function(dispose){
                     //pdf.save('orderList.pdf');
                     pdf.output('dataurlnewwindow');
                 }
