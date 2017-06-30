@@ -21,8 +21,8 @@ appModule.controller('OrderController', ['$scope', 'OrderInvoiceService',
                 pdf.output('dataurlnewwindow');
             });*/
 
-            var pdf = new jsPDF(),
-                source = document.getElementById('orderListTable');
+            //var pdf = new jsPDF(),
+            //    source = document.getElementById('orderListTable');
 
             /*pdf.addHTML(
                 source, 0, 0, {
@@ -34,11 +34,18 @@ appModule.controller('OrderController', ['$scope', 'OrderInvoiceService',
                 }
             );*/
 
+                var doc = new jsPDF();
+                doc.text("From HTML", 14, 16);
+                var elem = document.getElementById('ordersTable');
+                var res = doc.autoTableHtmlToJson(elem);
+                doc.autoTable(res.columns, res.data, {startY: 20});
+                doc.output('dataurlnewwindow');
+            /*
             pdf.addHTML(source, 20, 20, {pagesplit: true}, function(dispose){
                     //pdf.save('orderList.pdf');
                     pdf.output('dataurlnewwindow');
                 }
-            );
+            );*/
         };
 
         $scope.printableView = function(divId) {
