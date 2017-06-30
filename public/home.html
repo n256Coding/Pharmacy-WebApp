@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <base href="/app/">
+
+    <link rel="stylesheet" href="Scripts/sidebar.css"/>
+    <link rel="stylesheet" href="Styles/styles.css"/>
+    <link rel="stylesheet" href="Styles/emailViewerStyles.css"/>
+    <link rel="stylesheet" href="Scripts/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="Scripts/bootstrap/dist/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="Scripts/angularjs-datepicker/dist/angular-datepicker.min.css">
+    <script src="Scripts/angular/angular.js"></script>
+    <script src="Scripts/angular-route/angular-route.js"></script>
+    <script src="Scripts/jquery/dist/jquery-3.2.1.min.js"></script>
+    <script src="Scripts/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="Scripts/jspdf.debug.js"></script>
+    <script src="Scripts/html2canvas.js"></script>
+    <script src="Scripts/html2pdf.js"></script>
+    <script src="Scripts/userFunctions.js"></script>
+    <script src="Scripts/angularjs-datepicker/dist/angular-datepicker.min.js"></script>
+
+    <!-- PDF Helpers Imports -->
+    <script src="Scripts/pdf-libs/base64.js"></script>
+    <script src="Scripts/pdf-libs/jquery.base64.js"></script>
+    <script src="Scripts/pdf-libs/sprintf.js"></script>
+    <script src="Scripts/pdf-libs/tableExport.js"></script>
+
+    <!-- Modules -->
+    <script src="AngularModules/app.module.js"></script>
+
+    <!-- Controllers -->
+    <script src="AngularControllers/stock.controller.js"></script>
+    <script src="AngularControllers/email.controller.js"></script>
+    <script src="AngularControllers/drugRequest.controller.js"></script>
+    <script src="AngularControllers/order.controller.js"></script>
+
+    <!-- Services -->
+    <script src="AngularServices/email.data.store.service.js"></script>
+    <script src="AngularServices/orderInvoice.service.js"></script>
+    <script src="AngularServices/stock.data.store.service.js"></script>
+    <script src="AngularServices/supplier.service.js"></script>
+
+    <!-- Filters -->
+    <script src="AngularFilters/date.filter.js"></script>
+
+    <!-- ng Route -->
+    <script src="page.loader.js"></script>
+
+</head>
+<body ng-app="mainModule">
+<div id="page">
+    <div id="header"><h1 style="align-content: center">Bitslash Pharmacy</h1></div>
+    <div id="navigation" >
+        <ul>
+            <li><a ng-href="stockViewer">View Stock</a></li>
+            <li><a ng-href="makeOrders">Make Order</a></li>
+            <li><a ng-href="orderViewer">View Orders</a></li>
+        </ul>
+    </div>
+    <div class="mainContent" id="content" style="padding: 10px;" ng-view></div>
+</div>
+</body>
+</html>

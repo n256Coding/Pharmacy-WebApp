@@ -1,0 +1,26 @@
+<a ng-click="showPDF()" class="btn btn-primary">Stock Report</a>
+<input type="text" placeholder="Search by name" ng-model="searchKey" class="form-control"/>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Drug Name</th>
+        <th>Unit Type</th>
+        <th>Drug Category</th>
+        <th>Drug Price</th>
+        <th>Drug Quantity</th>
+        <th>Send Mail</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="stock in stocks | filter:searchKey">
+        <td>{{stock.name}}</td>
+        <td>{{stock.unitType}}</td>
+        <td>{{stock.category}}</td>
+        <td>{{stock.price}}</td>
+        <td>{{stock.qty}}</td>
+        <!--<td><input type="button" value="Place Order" ng-click="getPDFView()"/> </td>-->
+        <td><a ng-href="emailSender" ng-click="setEmailData(stock)" class="btn btn-primary">Send Email</a></td>
+    </tr>
+    </tbody>
+</table>

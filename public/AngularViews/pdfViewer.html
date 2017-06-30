@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../Scripts/html2canvas.js"></script>
+    <!-- <script src="../Scripts/jspdf.min.js"></script> -->
+    <script src="../Scripts/jspdf.debug.js"></script>
+    <script src="../Scripts/html2pdf/html2pdf.node.js"></script>
+    <script src="../Scripts/angular/angular.js"></script>
+    <script src="../Scripts/angular-route/angular-route.js"></script>
+    <script src="../AngularModules/app.module.js"></script>
+    <script src="../AngularControllers/stock.controller.js"></script>
+    <script src="../AngularControllers/email.controller.js"></script>
+    <script src="../AngularServices/email.data.store.service.js"></script>
+    <link rel="stylesheet" href="../Scripts/bootstrap/dist/css/bootstrap.min.css"/>
+    <script>
+        function genPDF(){
+            /*html2canvas(document.getElementById('pdfContent'), {
+                onrendered: function (canvas) {
+                    var img = canvas.toDataURL('image/png');
+                    var doc = new jsPDF({
+                        unit: 'in',
+                        format: 'A4',
+                        orientation: 'portrait'
+                    });
+                    doc.addImage(img, 'JPEG', 20, 20);
+                    //doc.save('test.pdf', document.body);
+                    doc.output('dataurlnewwindow');
+                    /*
+                    doc.output('save', 'filename.pdf'); //Try to save PDF as a file (not works on ie before 10, and some mobile devices)
+                    doc.output('datauristring');        //returns the data uri string
+                    doc.output('datauri');              //opens the data uri in current window
+                    doc.output('dataurlnewwindow');     //opens the data uri in new window
+                    */
+
+
+
+
+
+                    var pdf = new jsPDF('p', 'pt', 'letter');
+                    pdf.canvas.height = 72 * 11;
+                    pdf.canvas.width = 72 * 8.5;
+                    html2pdf(document.body, pdf, function(pdf){
+                        var iframe = document.createElement('iframe');
+                        iframe.setAttribute('style','position:absolute;right:0; top:0; bottom:0; height:100%; width:500px');
+                        document.body.appendChild(iframe);
+                        iframe.src = pdf.output('datauristring');
+                    });
+
+                    /*
+                    var generatePDF = function() {
+                        kendo.drawing.drawDOM($("#formConfirmation")).then(function(group) {
+                            kendo.drawing.pdf.saveAs(group, "Converted PDF.pdf");
+                        });
+                    }
+                    */
+
+
+
+                }
+            });
+        }
+    </script>
+</head>
+<body ng-app="mainModule">
+    <a href="javascript:genPDF()" class="btn btn-primary">Generate PDF</a>
+    <div id="pdfContent" ng-controller="stockController">
+        <h2>Item Stock Report</h2>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Drug Name</th>
+                <th>Unit Type</th>
+                <th>Drug Category</th>
+                <th>Drug Price</th>
+                <th>Drug Quantity</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="stock in stocks">
+                <td>{{stock.name}}</td>
+                <td>{{stock.unitType}}</td>
+                <td>{{stock.category}}</td>
+                <td>{{stock.price}}</td>
+                <td>{{stock.qty}}</td>
+                <!--<td><input type="button" value="Place Order" ng-click="getPDFView()"/> </td>-->
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
